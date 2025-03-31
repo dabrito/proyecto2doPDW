@@ -1,0 +1,38 @@
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    .wrapper {
+        min-height: 50vh; /* Hace que el contenedor ocupe toda la pantalla */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content {
+        flex: 1; /* Hace que el contenido crezca y empuje el footer hacia abajo */
+    }
+
+    footer {
+        background-color: white; /* Color de fondo */
+        color: #343a40; /* Color del texto */
+        padding: 10px 0;
+        text-align: center;
+        width: 150%; /* Ahora ocupa todo el ancho */
+        position: relative; /* Puede cambiarse a fixed si quieres que siempre esté visible */
+        bottom: 0;
+        left: 0;
+        border-top: 1px solid #ddd; /* Línea superior opcional */
+    }
+</style>
+
+<div class="wrapper">
+    <div class="content">
+        <!-- Aquí va tu contenido principal -->
+    </div>
+    <footer>
+        <p>&copy; 2025 Finanzas Personales. Todos los derechos reservados.</p>
+    </footer>
+</div>
+
