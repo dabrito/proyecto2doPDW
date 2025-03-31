@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= title %></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cantidad</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Creado</th>
+                <th>Actualizado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% transacciones.forEach(transaccion => { %>
+                <tr>
+                    <td><%= transaccion.id %></td>
+                    <td><%= transaccion.cantidad %></td>
+                    <td><%= transaccion.descripcion %></td>
+                    <td><%= transaccion.fecha %></td>
+                    <td><%= transaccion.createdAt %></td>
+                    <td><%= transaccion.updatedAt %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>
