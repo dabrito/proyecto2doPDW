@@ -1,0 +1,99 @@
+<%- include('partials/header') %>
+<%- include('partials/menu') %>
+
+<div class="container my-4">
+  <h2 class="text-center">Reportes</h2>
+
+  <div class="row">
+    <!-- Gráfico de líneas -->
+    <div class="col-md-12">
+      <h4 class="text-center">Ingresos y Gastos Mensuales</h4>
+      <div style="width: 100%; height: 400px;">
+        <canvas id="lineChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <!-- Gráfico de dona -->
+    <div class="col-md-6">
+      <h4 class="text-center">Ingresos vs Gastos</h4>
+      <canvas id="doughnutChart"></canvas>
+    </div>
+
+    <!-- Gráfico de barras -->
+    <div class="col-md-6">
+      <h4 class="text-center">Transacciones por Categoría</h4>
+      <canvas id="barChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const reportData = <%- JSON.stringify(reportData) %>;
+
+  // Línea
+  new Chart(document.getElementById('lineChart'), {
+    type: 'line',
+    data: {
+      labels: reportData.line.labels,
+      datasets: [
+        {
+          label: 'Ingresos',
+          data: reportData.line.ingresos,
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0, 0, 255, 0.2)',
+          borderWidth: 2,
+        },
+        {
+          label: 'Gastos',
+          data: reportData.line.gastos,
+          borderColor: 'red',
+          backgroundColor: 'rgba(255, 0, 0, 0.2)',
+          borderWidth: 2,
+        }
+      ],
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+
+  // Dona
+  new Chart(document.getElementById('doughnutChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Ingresos', 'Gastos'],
+      datasets: [{
+        data: [reportData.totales.ingresos, reportData.totales.gastos],
+        borderColor: ['blue', 'red'],
+        backgroundColor: ['rgba(0, 0, 255, 0.2)', 'rgba(255,99,132,0.6)']
+      }]
+    },
+    options: { responsive: true }
+  });
+
+  // Barras
+  new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+      labels: reportData.categorias.labels,
+      datasets: [
+        {
+          label: 'Ingresos',
+          data: reportData.categorias.ingresos,
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0, 0, 255, 0.2)'
+        },
+        {
+          label: 'Gastos',
+          data: reportData.categorias.gastos,
+          borderColor: 'red',
+          backgroundColor: 'rgba(255, 0, 0, 0.2)'
+        }
+      ]
+    },
+    options: { responsive: true }
+  });
+</script>
+
+<%- include('partials/footer') %>

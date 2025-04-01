@@ -1,39 +1,26 @@
-<style>
-    #sidebar {
-        background-color: #343a40; /* Color de fondo oscuro */
-        padding: 20px;
-        min-height: 100vh;
-    }
-
-    #sidebar h4 {
-        margin-bottom: 40px; /* Espacio debajo del título */
-    }
-
-    .nav-item {
-        margin-bottom: 20px; /* Espacio entre los elementos del menú */
-    }
-
-    .nav-link {
-        padding: 10px; /* Aumenta el área clickeable */
-        font-size: 20px; /* Tamaño del texto más grande */
-    }
-</style>
-
-
-<nav id="sidebar">
-    <h4 class="text-center">Bienvenido/a</h4>
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link text-white" href="#">Dashboard</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="#">Reportes</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="#">Billeteras</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="#">Conversión</a>
-        </li>
+<main class="d-flex flex-nowrap">
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+    <a href="/bienvenido" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none fs-4">
+      Bienvenido/a
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto" style="gap: 60px;">
+      <li class="nav-item">
+        <a href="/dashboard" class="nav-link text-white fs-5">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a href="/reportes" class="nav-link text-white fs-5">Reportes</a>
+      </li>
+      <li class="nav-item">
+        <a href="/billeteras" class="nav-link text-white fs-5">Billeteras</a>
+      </li>
+      <li class="nav-item">
+        <a href="/conversion" class="nav-link text-white fs-5">Conversión</a>
+      </li>
     </ul>
-</nav>
+  </div>
+  <div class="b-example-divider b-example-vr"></div>
+  <div class="container-fluid">
+    <header class="d-flex justify-content-start align-items-center p-3">
+      <h2 class="text-dark" style="margin-left: 40px;">Finanzas Personales</h2>
+    </header>
