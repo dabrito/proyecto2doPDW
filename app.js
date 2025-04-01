@@ -10,8 +10,8 @@ const conversionRoutes = require('./routes/conversion');
 const dashboardRoutes = require('./routes/dashboard');
 const reportesRoutes = require('./routes/reportes');
 
-// const transaccionesRouter = require('./routes/transacciones');
-// const categoriasRouter = require('./routes/categorias');
+const transaccionesRouter = require('./routes/transacciones');
+const categoriasRouter = require('./routes/categorias');
 const monedasRoutes = require('./routes/monedas');
 
 var app = express();
@@ -33,8 +33,8 @@ app.use('/reportes', reportesRoutes);
 app.use('/billeteras', billeterasRoutes);
 app.use('/conversion', conversionRoutes);
 
-// app.use('/api/transacciones', transaccionesRouter);
-// app.use('/api/categorias', categoriasRouter);
+app.use('/api/transacciones', transaccionesRouter);
+app.use('/api/categorias', categoriasRouter);
 app.use('/api/monedas', monedasRoutes);
 
 // catch 404 and forward to error handler
