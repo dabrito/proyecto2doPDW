@@ -1,0 +1,103 @@
+<%- include('partials/header') %>
+<%- include('partials/menu') %>
+
+<div class="container my-4">
+  <div class="row">
+    <!-- Columna izquierda -->
+    <div class="col-md-6">
+      <!-- Tabla de Saldo -->
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th colspan="2" class="text-center">Saldo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ingresos</td>
+            <td>$<%= ingresos.toFixed(2) %></td>
+          </tr>
+          <tr>
+            <td>Gastos</td>
+            <td>$<%= gastos.toFixed(2) %></td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td>$<%= total.toFixed(2) %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Tabla de Últimas Transacciones -->
+      <table class="table table-bordered mt-4">
+        <thead>
+          <tr>
+            <th colspan="4" class="text-center">Últimas Transacciones</th>
+          </tr>
+          <tr>
+            <th>Fecha</th>
+            <th>Categoría</th>
+            <th>Monto</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% transactions.slice(0, 5).forEach(t => { %>
+            <tr>
+              <td><%= new Date(t.date).toLocaleDateString('es-EC') %></td>
+              <td><%= t.categoria?.nombre || ('Categoría ' + t.categoryId) %></td>
+              <td>$<%= t.amount.toFixed(2) %></td>
+              <td><%= t.type %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          TRANSACCIÓN (Ingreso - Gasto)
+        </div>
+        <div class="card-body">
+          <form action="/dashboard" method="POST">
+            <div class="mb-3">
+              <label for="type" class="form-label">Tipo</label>
+              <select id="type" name="type" class="form-select">
+                <option value="ingreso">Ingreso</option>
+                <option value="gasto">Gasto</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="amount" class="form-label">Cantidad</label>
+              <input type="number" name="amount" class="form-control" id="amount" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="category" class="form-label">Categoría</label>
+              <select class="form-select" id="category" name="categoryId" required>
+                <option value="" disabled selected>Seleccione una categoría</option>
+                <% categorias.forEach(c => { %>
+                  <option value="<%= c.id %>"><%= c.nombre %></option>
+                <% }) %>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="date" class="form-label">Fecha</label>
+              <input type="date" class="form-control" name="date" id="date" value="<%= today %>">
+            </div>
+
+            <button class="btn btn-primary" type="submit">Agregar Transacción</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-bottom: 375px;"></div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

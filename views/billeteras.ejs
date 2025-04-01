@@ -1,0 +1,37 @@
+
+<%- include('partials/header') %>
+<%- include('partials/menu') %>
+
+<div class="container-fluid p-3" style="height: 100vh; overflow-y: auto;">
+  <table class="table table-bordered table-hover w-100">
+    <thead class="table-dark">
+      <tr>
+        <th>Fecha</th>
+        <th>Categoría</th>
+        <th>Monto</th>
+        <th>Tipo</th>
+        <th style="width: 100px;">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% transactions.forEach(t => { %>
+        <tr>
+          <td><%= new Date(t.date).toLocaleDateString('es-EC') %></td>
+          <td><%= t.categoria?.nombre || ('Categoría ' + t.categoryId) %></td>
+          <td>$<%= t.amount.toFixed(2) %></td>
+          <td><%= t.type %></td>
+          <td>
+            <form method="POST" action="/billeteras/delete" style="display:inline;">
+              <input type="hidden" name="id" value="<%= t.id %>">
+              <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('¿Eliminar esta transacción?')">
+                Eliminar
+              </button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('partials/footer') %>

@@ -4,8 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const bienvenidaRoutes = require('./routes/bienvenida');
+const billeterasRoutes = require('./routes/billeteras');
+const conversionRoutes = require('./routes/conversion');
+const dashboardRoutes = require('./routes/dashboard');
+const reportesRoutes = require('./routes/reportes');
+
+// const transaccionesRouter = require('./routes/transacciones');
+// const categoriasRouter = require('./routes/categorias');
+const monedasRoutes = require('./routes/monedas');
 
 var app = express();
 
@@ -19,8 +26,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', bienvenidaRoutes);
+app.use('/bienvenido', bienvenidaRoutes);
+app.use('/dashboard', dashboardRoutes);
+app.use('/reportes', reportesRoutes);
+app.use('/billeteras', billeterasRoutes);
+app.use('/conversion', conversionRoutes);
+
+// app.use('/api/transacciones', transaccionesRouter);
+// app.use('/api/categorias', categoriasRouter);
+app.use('/api/monedas', monedasRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
